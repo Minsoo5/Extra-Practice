@@ -103,8 +103,12 @@ public class Main {
 
         int[] flowerbed = {1,0,0,0,1};
         int n = 1;
-        System.out.println(LevelEasy.canPlaceFlowers(flowerbed, n));
+//        System.out.println(LevelEasy.canPlaceFlowers(flowerbed, n));
 
+        String a = "twn";
+        String b = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxwxxxxxxxxxxxxxxxxxxxxxxxxxn";
+
+        System.out.println(LevelEasy.isSubsequence(a, b));
     }
 
     }

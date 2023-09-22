@@ -2,6 +2,7 @@ package LeetCode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class LevelEasy {
 
@@ -90,4 +91,28 @@ public class LevelEasy {
 //        return (maxFlowers >= n);
 //    }
 
+
+
+    public static boolean isSubsequence(String s, String t) {
+        ArrayList<Integer> charOrder = new ArrayList<>();
+
+        int checkpoint = 0;
+        for (int i = 0; i < s.length(); i++) {
+            for (int j = checkpoint; j < t.length(); j++) {
+                if (s.charAt(i) == t.charAt(j)) {
+                    charOrder.add(j);
+                    checkpoint = j + 1;
+                    break;
+                }
+            }
+        }
+        ArrayList<Integer> sorted = (ArrayList<Integer>) charOrder.stream().sorted().collect(Collectors.toList());
+        if (sorted.size() != s.length()) {return false;}
+        for (int i = 0; i < charOrder.size(); i++) {
+            if (charOrder.get(i) != sorted.get(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
