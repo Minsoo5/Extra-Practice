@@ -1,6 +1,7 @@
 import Hola.Printer;
 import Lambdas.PrintGreetings;
 import Lambdas.PrintMessage;
+import LeetCode.LevelEasy;
 import VarArgTests.PeopleList;
 import VarArgTests.Person;
 import WhiteBoard.ArrayManipulation;
@@ -100,22 +101,9 @@ public class Main {
 //
 //        System.out.println(peeps.size());
 
-        int[] input = {9, 6, 5, 1};
-
-        int[] output = ArrayManipulation.joesBubbleSort(input);
-
-        for (int i : output) {
-            System.out.println(i);
-        }
-
-
-        System.out.println(NumberManipulation.primeNumCheck(10));
-
-
-        int[][] array = new int[5][6];
-
-        System.out.println(array.length);
-
+        int[] flowerbed = {1,0,0,0,1};
+        int n = 1;
+        System.out.println(LevelEasy.canPlaceFlowers(flowerbed, n));
 
     }
 
