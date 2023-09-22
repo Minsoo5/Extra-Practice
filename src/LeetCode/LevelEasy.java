@@ -25,49 +25,43 @@ public class LevelEasy {
         return ans;
     }
 
-
     public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-        int maxFlowers = 0;
-        List<Integer> emptyPlots = new ArrayList<>();
-        if (flowerbed[0] == 0 && flowerbed[1] == 0) {
-            maxFlowers++;
+        int maxFlower = 0;
+        if (flowerbed.length == 1) {
+            if (n == 0) {
+                return true;
+            } else if (flowerbed[0] == 1 && n > 0) { return false;}
         }
-        if (flowerbed[(flowerbed.length - 2)] == 0 && (flowerbed[flowerbed.length - 1] == 0)) {
-            maxFlowers++;
-        }
+
         for (int i = 0; i < flowerbed.length; i++) {
-            if (flowerbed[i] == 0) {
-                int temp = 1;
-                for (int j = i + 1; j < flowerbed.length; j++) {
-                    if (flowerbed[j] == 0) {
-                        temp++;
-                        i++;
-                    } else {
-                        emptyPlots.add(temp);
-                        break;
-                    }
+            if (i == 0) {
+                if (flowerbed[i] == 0 && flowerbed[i + 1] == 0) {
+                    maxFlower++;
+                }
+            } else if (i == flowerbed.length -1) {
+                if (flowerbed[i] == 0 && flowerbed[i - 1] == 0) {
+                    maxFlower++;
+                }
+            } else {
+                if (flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
+                    maxFlower++;
                 }
             }
 
         }
-        for (int i = 0; i < emptyPlots.size(); i++) {
-            if (emptyPlots.get(i) >= 3) {
-                int temp = emptyPlots.get(i);
-                int remainder = temp - 3;
-                maxFlowers++;
-                if ((remainder / 2) > 0) {
-                    maxFlowers += Math.floorDiv(remainder, 2);
-                }
-            }
-        }
-        return (maxFlowers >= n);
+
+        return (maxFlower >= n);
     }
 
-
 //    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-    // 1 0 0 0 1
-//            int maxFlowers = 0;
-//            List<Integer> emptyPlots = new ArrayList<>();
+//        int maxFlowers = 0;
+//        List<Integer> emptyPlots = new ArrayList<>();
+//        if (flowerbed[0] == 0 && flowerbed[1] == 0) {
+//            maxFlowers++;
+//        }
+//        if (flowerbed[(flowerbed.length - 2)] == 0 && (flowerbed[flowerbed.length - 1] == 0)) {
+//            maxFlowers++;
+//        }
 //        for (int i = 0; i < flowerbed.length; i++) {
 //            if (flowerbed[i] == 0) {
 //                int temp = 1;
@@ -93,8 +87,7 @@ public class LevelEasy {
 //                }
 //            }
 //        }
-//            return (maxFlowers >= n);
+//        return (maxFlowers >= n);
 //    }
-//}
 
 }
