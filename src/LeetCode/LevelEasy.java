@@ -138,4 +138,36 @@ public class LevelEasy {
         return true;
     }
 
+
+    public int[][] floodFill(int[][] image, int sr, int sc, int color) {
+
+        // 1 1 1    2 2 2
+        // 1 1 0    2 2 0
+        // 1 0 1    2 0 1
+
+        //               x-1, y
+        //   x, y-1      x  , y     x, y+1
+        //               x+1, y
+
+        int ogColor = image[sr][sc];
+
+        changeColor(image, sr, sc, ogColor, color);
+
+        return image;
+    }
+
+    public void changeColor(int[][] image, int x, int y, int ogColor, int newColor) {
+        if (x < 0 || x >= image.length || y < 0 || y >= image[0].length || image[x][y] != ogColor) {
+            return;
+        } else {
+            image[x][y] = newColor;
+            changeColor(image, x - 1, y, ogColor, newColor);
+            changeColor(image, x + 1, y, ogColor, newColor);
+            changeColor(image, x, y - 1, ogColor, newColor);
+            changeColor(image, x, y + 1, ogColor, newColor);
+        }
+
+    }
+
+
 }
