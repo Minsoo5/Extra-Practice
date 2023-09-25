@@ -101,14 +101,21 @@ public class Main {
 //
 //        System.out.println(peeps.size());
 
-        int[] flowerbed = {1,0,0,0,1};
-        int n = 1;
+//        int[] flowerbed = {1,0,0,0,1};
+//        int n = 1;
 //        System.out.println(LevelEasy.canPlaceFlowers(flowerbed, n));
+//
+//        String a = "twn";
+//        String b = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxwxxxxxxxxxxxxxxxxxxxxxxxxxn";
+//
+//        System.out.println(LevelEasy.isSubsequence(a, b));
+//    }
 
-        String a = "twn";
-        String b = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxtxxxxxxxxxxxxxxxxxxxxwxxxxxxxxxxxxxxxxxxxxxxxxxn";
+        int[] nums = {2,5};
+        int target = 5;
 
-        System.out.println(LevelEasy.isSubsequence(a, b));
+        System.out.println(LevelEasy.search(nums, target));
+
     }
 
     }

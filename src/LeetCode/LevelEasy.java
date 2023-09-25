@@ -91,6 +91,28 @@ public class LevelEasy {
 //        return (maxFlowers >= n);
 //    }
 
+    public static int search(int[] nums, int target) {
+
+        if (nums.length == 1) {
+            return nums[0] == target ? 0 : -1;
+        }
+
+        int leftIndex = 0;
+        int rightIndex = nums.length -1;
+
+        while (leftIndex <= rightIndex) {
+            int middleIndex = (leftIndex + rightIndex) / 2;
+            if (nums[middleIndex] == target) {
+                return middleIndex;
+            } else if (nums[middleIndex] > target) {
+                rightIndex = middleIndex - 1;
+            } else if (nums[middleIndex] < target) {
+                leftIndex = middleIndex + 1;
+            }
+        }
+
+        return -1;
+    }
 
 
     public static boolean isSubsequence(String s, String t) {
@@ -115,4 +137,5 @@ public class LevelEasy {
         }
         return true;
     }
+
 }
