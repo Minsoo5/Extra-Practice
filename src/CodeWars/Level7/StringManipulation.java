@@ -2,6 +2,7 @@ package CodeWars.Level7;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,16 +68,6 @@ public class StringManipulation {
     }
 
 
-    public static int[] arrayDiff(int[] a, int[] b) {
-        // Remove from a if b also has it. Preserve order.
-        // Your code here
-
-
-
-
-
-        return a;
-    }
 
 
     public static void main(String[] args) {

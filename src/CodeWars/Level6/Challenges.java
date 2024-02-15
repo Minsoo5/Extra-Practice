@@ -2,6 +2,7 @@ package CodeWars.Level6;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 public class Challenges {
 
@@ -74,10 +75,48 @@ public class Challenges {
         return true;
     }
 
+    public static int[] arrayDiff(int[] a, int[] b) {
+        // Remove from a if b also has it. Preserve order.
+        // Your code here
+
+        ArrayList<Integer> ans = new ArrayList<>();
+        for (int n : a) {
+            ans.add(n);
+        }
+
+        for (int i = 0; i < b.length; i++) {
+            for (int j = 0; j < a.length; j++) {
+                if (b[i] == a[j]) {
+                    ans.remove(Integer.valueOf(b[i]));
+                }
+            }
+        }
+
+        int[] ans1 = new int[ans.size()];
+        for(int i = 0; i < ans.size(); i++) {
+            ans1[i] = ans.get(i);
+        }
+
+        return ans1;
+    }
+
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        int squareRoot = (int)Math.sqrt(num) + 1;
+        for (int i = 2; i < squareRoot; i++){
+            if (num % i == 0){
+                return false;
+            }
+        }
+        return true;
+    }
 
 
     public static void main(String[] args) {
         System.out.println(Arrays.toString(solution("Hello")));
+        System.out.println(Arrays.toString(arrayDiff(new int[]{1, 2}, new int[]{1})));
     }
 
 
