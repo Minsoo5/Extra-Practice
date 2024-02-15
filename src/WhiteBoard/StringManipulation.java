@@ -1,6 +1,7 @@
 package WhiteBoard;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class StringManipulation {
 
@@ -60,66 +61,42 @@ public class StringManipulation {
         return false;
     }
 
+    public static int countOfWordsInString(String string) {
+        // No use .trim or .split
+        if (!string.contains(" ")) {
+            return 1;
+        }
+        int spaceCounter = 0;
+        for (int i = 0; i < string.length(); i++) {
+            if (i > 0 && i < string.length() -1) {
+                if (string.charAt(i - 1) != ' ' && string.charAt(i) == ' ' && string.charAt(i + 1) != ' ') {
+                    spaceCounter++;
+                }
+            }
+        }
+        return spaceCounter + 1;
+    }
+
+    public static int[] countWordsInStringInArray(String[] stringArray) {
+        ArrayList<Integer> numbers = new ArrayList<>();
+
+        Arrays.stream(stringArray)
+                .toList()
+                .forEach(string -> numbers.add(StringManipulation.countOfWordsInString(string)));
+
+        return numbers.stream().mapToInt(i -> i).toArray();
+    }
+
 
 
 
     public static void main(String[] args) {
 
-//        String original = "Hello my name is Min.";
-//        StringBuilder sb = new StringBuilder();
-//
-//        String[] splitWords = original.split(" ");
-//
-//        for (int i = 0; i < splitWords.length; i++) {
-//            sb.append(StringManipulation.reverseString(splitWords[i]));
-//            sb.append(" ");
-//        }
-//        String result = sb.toString();
-//        System.out.println(result);
-//
-//    }
-//    public static String reverseString(String string) {
-//        StringBuilder sb = new StringBuilder();
-//        char[] characters = string.toCharArray();
-//        for (int i = characters.length -1; i >= 0; i --) {
-//            sb.append(characters[i]);
-//        }
-//        return sb.toString();
+        String[] stringArray = {"one", "two two", "three three thee", "four, four, four, four", "There are five words here"};
+        System.out.println(StringManipulation.countOfWordsInString("There are five words here"));
 
-//        StringBuilder sb = new StringBuilder();
-//        int nums = 123;
-//        String singles = Integer.toString(nums);
-//
-//        String[] stringNum = singles.split("");
-//        ArrayList<Integer> numArray = new ArrayList<>();
-//
-//        for (String s : stringNum) {
-//            numArray.add(Integer.parseInt(s));
-//        }
-//
-//        for (int i = 0; i < numArray.size(); i++) {
-//            numArray.set(i, numArray.get(i) * numArray.get(i));
-//        }
-//
-//        for (Integer i : numArray) {
-//            sb.append(Integer.toString(i));
-//        }
-//
-//        String ans = sb.toString();
-//        int result = Integer.parseInt(ans);
-//
-//        System.out.println(result);
-//    }
+        System.out.println(Arrays.toString(StringManipulation.countWordsInStringInArray(stringArray)));
 
-        String test = "([)]";
-
-        System.out.println(StringManipulation.isValid(test));
-
-        String hi = "subString";
-
-        System.out.println(StringManipulation.takeOutSpace("Hello How Are You"));
-
-        System.out.println(hi.substring(0,3));
 
     }
 }
