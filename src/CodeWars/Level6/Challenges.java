@@ -113,10 +113,36 @@ public class Challenges {
         return true;
     }
 
+    public static String createPhoneNumber(int[] numbers) {
+        String number = "";
+
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                number += "(";
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 1) {
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 2) {
+                number += String.valueOf(numbers[i]);
+                number += ") ";
+            }
+            if (i > 2 && i != 5) {
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 5) {
+                number += String.valueOf(numbers[i]);
+                number += "-";
+            }
+        }
+        return number;
+    }
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(solution("Hello")));
-        System.out.println(Arrays.toString(arrayDiff(new int[]{1, 2}, new int[]{1})));
+
+        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+
     }
 
 
