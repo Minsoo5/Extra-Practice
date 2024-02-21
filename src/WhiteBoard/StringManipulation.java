@@ -87,6 +87,10 @@ public class StringManipulation {
         return numbers.stream().mapToInt(i -> i).toArray();
     }
 
+    public static String solution(int num) {
+        return num + "";
+    }
+
 
 
 

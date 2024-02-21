@@ -113,10 +113,26 @@ public class Challenges {
         return true;
     }
 
+    public static String decode(String morseCode) {
+        String[] separated = morseCode.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (String s : separated) {
+            sb.append(s + "@");
+        }
+        if (sb.charAt(0) == '@') {
+            sb.deleteCharAt(0);
+        }
+        return sb.toString();
+    }
+
 
     public static void main(String[] args) {
-        System.out.println(Arrays.toString(solution("Hello")));
-        System.out.println(Arrays.toString(arrayDiff(new int[]{1, 2}, new int[]{1})));
+        System.out.println(decode(" .... . -.--   .--- ..- -.. ."));
+
+        StringBuilder sb = new StringBuilder("Hello");
+
+        System.out.println(sb.toString().length());
+        System.out.println(sb.deleteCharAt(0).toString().length());
     }
 
 
