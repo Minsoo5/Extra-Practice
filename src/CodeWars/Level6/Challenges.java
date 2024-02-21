@@ -125,6 +125,31 @@ public class Challenges {
         return sb.toString();
     }
 
+    public static String createPhoneNumber(int[] numbers) {
+        String number = "";
+
+        for (int i = 0; i < 10; i++) {
+            if (i == 0) {
+                number += "(";
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 1) {
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 2) {
+                number += String.valueOf(numbers[i]);
+                number += ") ";
+            }
+            if (i > 2 && i != 5) {
+                number += String.valueOf(numbers[i]);
+            }
+            if (i == 5) {
+                number += String.valueOf(numbers[i]);
+                number += "-";
+            }
+        }
+        return number;
+    }
 
     public static void main(String[] args) {
         System.out.println(decode(" .... . -.--   .--- ..- -.. ."));
@@ -133,6 +158,9 @@ public class Challenges {
 
         System.out.println(sb.toString().length());
         System.out.println(sb.deleteCharAt(0).toString().length());
+
+        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
+
     }
 
 
