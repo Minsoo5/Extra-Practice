@@ -162,8 +162,57 @@ public class StringManipulation {
         return sb.toString().trim();
     }
 
+    public static int countPassengers(ArrayList<int[]> stops) {
+        int totalEnter = 0;
+        int totalExit = 0;
+
+        for (int i = 0; i < stops.size(); i++) {
+            totalEnter += stops.get(i)[0];
+            totalExit += stops.get(i)[1];
+        }
+
+        return totalEnter-totalExit;
+    }
+
+    public static int sortDesc(final int num) {
+
+
+        ArrayList<String> stringArrayList = new ArrayList<>(Arrays.asList(String.valueOf(num).split("")));
+
+        Collections.sort(stringArrayList, Collections.reverseOrder());
+
+        StringBuilder sb = new StringBuilder();
+        for (String s : stringArrayList) {
+            sb.append(s);
+        }
+
+        return Integer.parseInt(sb.toString());
+
+    }
+
+    public static int[] invert(int[] array) {
+        if (array == null) {
+            return array;
+        }
+        Arrays.setAll(array, i -> array[i] * -1);
+        System.out.println(Arrays.toString(array));
+        return array;
+
+//        return Arrays.stream(array).map(i -> i * -1).toArray();
+
+    }
+
+    public static int[] countBy(int x, int n){
+        int [] ans = new int[n];
+        for (int i = 0; i < n; i++) {
+            ans[i] = (x * (i + 1));
+        }
+        return ans;
+    }
+
+
     public static void main(String[] args) {
-        String [] arr = {"a", "b", "c", "d", "e"};
-        System.out.println(String.join("X", arr));
+        System.out.println(Arrays.toString(countBy(2, 5)));
+
     }
 }

@@ -1,8 +1,7 @@
 package CodeWars.Level6;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Challenges {
 
@@ -151,16 +150,62 @@ public class Challenges {
         return number;
     }
 
+    public static int digital_root(int n) {
+        // Turn to string, turn each string digit into num then add together and return
+
+//        String[] strings = String.valueOf(n).split("");
+//        int total = 0;
+//
+//        for (String s : strings) {
+//            total += Integer.parseInt(s);
+//        }
+//
+//        return n < 10 ? n : digital_root(total);
+
+        return n < 10 ? n : digital_root(String.valueOf(n).chars().map(c -> Character.getNumericValue(c)).sum());
+    }
+
+    public static int findIt(int[] a) {
+        HashMap<Integer, Integer> numOfTimes = new HashMap<>();
+
+        for (int i : a) {
+            if (numOfTimes.containsKey(i)) {
+                numOfTimes.replace(i, numOfTimes.get(i) + 1);
+            } else {
+                numOfTimes.put(i, 1);
+            }
+        }
+        Set<Integer> keySet = numOfTimes.keySet();
+        for (Integer key : keySet) {
+            if (numOfTimes.get(key) % 2 == 1) {
+                return key;
+            }
+        }
+        return 0;
+    }
+
+    public static int solution(int number) {
+
+        Set<Integer> multiples = new HashSet<>();
+        for (int i = 1; i < number; i++) {
+            if (i % 3 == 0 || i % 5 == 0) {
+                multiples.add(i);
+            }
+        }
+        return multiples.stream().mapToInt(Integer::intValue).sum();
+
+//        int sum = 0;
+//        for (int i = 1; i < number; i++) {
+//            if (i % 3 == 0 || i % 5 == 0) {
+//                sum += i;
+//            }
+//        }
+//        return sum;
+    }
+
     public static void main(String[] args) {
-        System.out.println(decode(" .... . -.--   .--- ..- -.. ."));
 
-        StringBuilder sb = new StringBuilder("Hello");
-
-        System.out.println(sb.toString().length());
-        System.out.println(sb.deleteCharAt(0).toString().length());
-
-        System.out.println(createPhoneNumber(new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9, 0}));
-
+        System.out.println(solution(10));
     }
 
 
