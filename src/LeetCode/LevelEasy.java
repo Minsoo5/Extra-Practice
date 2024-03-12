@@ -1,6 +1,7 @@
 package LeetCode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,70 +27,38 @@ public class LevelEasy {
         return ans;
     }
 
+    // 605
     public static boolean canPlaceFlowers(int[] flowerbed, int n) {
         int maxFlower = 0;
-        if (flowerbed.length == 1) {
-            if (n == 0) {
-                return true;
-            } else if (flowerbed[0] == 1 && n > 0) { return false;}
+
+        if (flowerbed.length == 1 && flowerbed[0] == 0) {
+            maxFlower ++;
+            return n <= maxFlower;
         }
 
         for (int i = 0; i < flowerbed.length; i++) {
             if (i == 0) {
                 if (flowerbed[i] == 0 && flowerbed[i + 1] == 0) {
                     maxFlower++;
+                    flowerbed[i] = 1;
                 }
             } else if (i == flowerbed.length -1) {
                 if (flowerbed[i] == 0 && flowerbed[i - 1] == 0) {
                     maxFlower++;
+                    flowerbed[i] = 1;
                 }
             } else {
-                if (flowerbed[i - 1] == 0 && flowerbed[i + 1] == 0) {
+                if (flowerbed[i - 1] == 0 && flowerbed[i] == 0 && flowerbed[i + 1] == 0) {
                     maxFlower++;
+                    flowerbed[i] = 1;
                 }
             }
 
         }
 
-        return (maxFlower >= n);
+        return n <= maxFlower;
     }
 
-//    public static boolean canPlaceFlowers(int[] flowerbed, int n) {
-//        int maxFlowers = 0;
-//        List<Integer> emptyPlots = new ArrayList<>();
-//        if (flowerbed[0] == 0 && flowerbed[1] == 0) {
-//            maxFlowers++;
-//        }
-//        if (flowerbed[(flowerbed.length - 2)] == 0 && (flowerbed[flowerbed.length - 1] == 0)) {
-//            maxFlowers++;
-//        }
-//        for (int i = 0; i < flowerbed.length; i++) {
-//            if (flowerbed[i] == 0) {
-//                int temp = 1;
-//                for (int j = i + 1; j < flowerbed.length; j++) {
-//                    if (flowerbed[j] == 0) {
-//                        temp++;
-//                        i++;
-//                    } else {
-//                        emptyPlots.add(temp);
-//                        break;
-//                    }
-//                }
-//            }
-//
-//        }
-//        for (int i = 0; i < emptyPlots.size(); i++) {
-//            if (emptyPlots.get(i) >= 3) {
-//                int temp = emptyPlots.get(i);
-//                int remainder = temp - 3;
-//                maxFlowers++;
-//                if ((remainder / 2) > 0) {
-//                    maxFlowers += Math.floorDiv(remainder, 2);
-//                }
-//            }
-//        }
-//        return (maxFlowers >= n);
-//    }
 
     public static int search(int[] nums, int target) {
 
@@ -169,5 +138,63 @@ public class LevelEasy {
 
     }
 
+    //1071
+    public static String gcdOfStrings(String str1, String str2) {
+        // Check and see if the smaller string can fit into large string with 0 remainders
+        // Check if it contains it
+
+        String shortest = str1.length() <= str2.length() ? str1 : str2;
+        String longest = str1.length() > str2.length() ? str1 : str2;;
+
+        for (int i = shortest.length(); i > 0; i--) {
+            String temp = shortest.substring(0, i);
+            if (longest.contains(temp) && longest.length() % temp.length() == 0 && shortest.length() % temp.length() == 0) {
+               if (longest.equals(temp.repeat(longest.length() / temp.length())) && shortest.equals(temp.repeat(shortest.length() / temp.length()))) {
+                   return temp;
+               }
+
+            }
+        }
+
+        return "";
+    }
+
+
+    public static String reverseVowels(String s) {
+        // Input:   "leetcode"
+        // Output:  "leotcede"
+
+        // Find all vowels
+        // Make note of their positions
+        // reverse it / build it BUT refer to a different chart when building the vowels
+
+        List<Character> vowels = Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U');
+        List<Integer> vowelPlacements = new ArrayList<>();
+
+        for (int i = 0; i < s.length(); i++) {
+            if (vowels.contains(s.charAt(i))) {
+                vowelPlacements.add(i);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int counter = vowelPlacements.size() - 1;
+
+
+        for (int i = 0; i < s.length(); i++) {
+            if (!vowels.contains(s.charAt(i))) {
+                sb.append(s.charAt(i));
+            } else {
+                sb.append(s.charAt(vowelPlacements.get(counter)));
+                counter--;
+            }
+        }
+        return sb.toString();
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(reverseVowels("leetcode"));
+    }
 
 }
