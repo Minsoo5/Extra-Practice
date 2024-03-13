@@ -22,4 +22,14 @@ public class Calculate {
     }
 
 
+    public int[] addUpExcept(int[] input) {
+        // 1, 2, 3, 4
+
+        // 9, 8, 7, 6
+
+        // prefix 1, 3, 7, 10
+        return null;
+
+    }
+
 }

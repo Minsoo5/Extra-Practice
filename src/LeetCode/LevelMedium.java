@@ -42,13 +42,6 @@ public class LevelMedium {
         return ans;
     }
 
-    public static int multiply(int ... nums) {
-        int ans = 1;
-        for (int i : nums) {
-            ans = ans * i;
-        }
-        return ans;
-    }
 
     public static void main(String[] args) {
         System.out.println(reverseWords("  hello world  "));
